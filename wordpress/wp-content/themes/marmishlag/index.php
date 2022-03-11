@@ -2,7 +2,14 @@
 
 <div class="content">
 
+    <?php if (is_user_logged_in()) : ?>
+        <?php $currentUser = wp_get_current_user(); ?>
+        <h2><?= $currentUser->user_login ?></h2>
+        </br>
+    <?php endif; ?>
+
     <div class="category">
+        <?php get_search_form(); ?>
         <h3>Catégories</h3>
         <?php
         $terms = get_terms(['taxonomy' => 'type']);
@@ -39,8 +46,6 @@
         <?= MarmishlagPaginateLinks() ?>
 
     <?php endif; ?>
-
-</div>
 
 <?php get_footer(); ?>
 

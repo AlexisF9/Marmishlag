@@ -30,28 +30,6 @@ a {
 }
 
 
-/* HEADER */
-
-.header {
-    background-color: lightsalmon;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 100%;
-    height: 100px;
-    margin-bottom: 3rem;
-}
-
-.title, .item {
-    display: flex;
-    align-items: center;
-}
-
-.title a {
-    padding-right: 1rem;
-    color: black;
-}
-
 /* CARD */
 
 .content {

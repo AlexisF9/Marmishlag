@@ -18,7 +18,20 @@
             'container' => false
         ]); ?>
     </div>
-    <?php get_search_form(); ?>
+    <div>
+	    <?php if (is_user_logged_in()) : ?>
+		    <?php $currentUser = wp_get_current_user(); ?>
+            <a class="headerLink"><?= $currentUser->user_login ?></a>
+            <a class="headerLink" href="<?= wp_logout_url(home_url()); ?>">Logout</a>
+	    <?php endif; ?>
+	    <?php if (!is_user_logged_in()) : ?>
+            <a class="headerLink" href="/login">Se connecter</a>
+	    <?php endif; ?>
+	    <?php if (!is_user_logged_in()) : ?>
+            <a class="headerLink" href="/register">S'inscrire</a>
+	    <?php endif; ?>
+    </div>
+
 </nav>
 
 

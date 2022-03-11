@@ -1,5 +1,9 @@
 <?php
 
+if (current_user_can('subscriber') && !is_admin()) {
+    add_filter('show_admin_bar', '__return_false');
+}
+
 add_action('after_setup_theme',
     function () {
         add_theme_support('title-tag');
@@ -10,7 +14,8 @@ add_action('after_setup_theme',
     });
 
 function marmishlag_theme_style() {
-    wp_enqueue_style( 'marmishlag-style', get_stylesheet_uri('./style.css') );
+    wp_enqueue_style( 'marmishlag-style', get_stylesheet_directory_uri() . '/style.css' );
+    wp_enqueue_style( 'marmishlag-style-header', get_stylesheet_directory_uri() . '/header.css' );
 }
 add_action( 'wp_enqueue_scripts', 'marmishlag_theme_style' );
 
@@ -74,8 +79,28 @@ add_action('init', function (){
         'taxonomies' => ['type'],
         'supports' => [
             'thumbnail', 'custom-fields', 'title'
+        ],
+        'capabilities' => [
+            'edit_post' => 'manage_events',
+            'read_post' => 'manage_events',
+            'delete_post' => 'manage_events'
         ]
     ]);
 
     flush_rewrite_rules();
+});
+
+add_action('admin_post_nopriv_register', function () {
+    if (!wp_verify_nonce($_POST['form'], 'form')) {
+        die('nonce invalide');
+    }
+
+    wp_insert_user([
+        'user_pass' => $_POST['password'],
+        'user_login' => $_POST['name'],
+        'user_email' => $_POST['email']
+    ]);
+
+
+    wp_redirect( '/login' );
 });
