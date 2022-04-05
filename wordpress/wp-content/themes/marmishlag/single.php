@@ -38,4 +38,4 @@
         <?php endwhile; ?>
 <?php endif; ?>
 
-<?php get_footer(); ?>
+<?php wp_footer(); ?>

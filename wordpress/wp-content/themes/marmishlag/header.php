@@ -21,14 +21,14 @@
     <div>
 	    <?php if (is_user_logged_in()) : ?>
 		    <?php $currentUser = wp_get_current_user(); ?>
-            <a class="headerLink" href="/profil"><?= $currentUser->user_login ?></a>
+            <a class="headerLink profil" href="/profil"><?= $currentUser->user_login ?></a>
             <a class="headerLink" href="<?= wp_logout_url(home_url()); ?>">Logout</a>
 	    <?php endif; ?>
 	    <?php if (!is_user_logged_in()) : ?>
             <a class="headerLink" href="/login">Se connecter</a>
 	    <?php endif; ?>
 	    <?php if (!is_user_logged_in()) : ?>
-            <a class="headerLink" href="/register">S'inscrire</a>
+            <a class="headerLink register" href="/register">S'inscrire</a>
 	    <?php endif; ?>
     </div>
 

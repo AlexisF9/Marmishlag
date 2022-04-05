@@ -11,12 +11,14 @@ wp_head();
 
 <form action="<?= admin_url('admin-post.php'); ?>" method="post" enctype="multipart/form-data">
 
-        <input placeholder='Name' type="text" id="exampleInputEmail1" name="name">
+        <label for="name">Nom d'utilisateur</label>
+        <input type="text" id="name" name="name">
 
+        <label for="email">Email</label>
+        <input class="emailInput" type="email" id="email" name="email">
 
-        <input class="emailInput" placeholder='Email' type="email" id="exampleInputEmail1" name="email">
-
-        <input placeholder='password' type="password" id="exampleInputPassword1" name="password">
+        <label for="password">Votre mot de passe</label>
+        <input type="password" id="password" name="password">
 
     <input type="hidden" name="action" value="register">
     <?php wp_nonce_field('form', 'form'); ?>

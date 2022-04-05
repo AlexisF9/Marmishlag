@@ -1,0 +1,40 @@
+.profilContent {
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.welcomeProfil, .postForm {
+    margin-bottom: 2rem;
+}
+
+.postForm form {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+}
+
+.postForm input, .postForm select {
+    border: 0;
+    background-color: white;
+    border-radius: 7px;
+    padding: 5px;
+    transition: border 0.3s;
+    border: 2px solid transparent;
+}
+
+.postForm input:focus, .postForm select:focus {
+    border: 2px solid black;
+}
+
+.postForm label {
+    margin-top: 10px;
+}
+
+.postForm button {
+    margin-top: 10px;
+    width: fit-content;
+    padding: 10px;
+    border-radius: 7px;
+    cursor: pointer;
+}

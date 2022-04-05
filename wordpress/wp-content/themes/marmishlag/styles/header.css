@@ -1,5 +1,5 @@
 .header {
-  background-color: lightsalmon;
+  background-color: white;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -16,10 +16,21 @@
 
 .headerLink,
 .title a {
-  padding-right: 1rem;
-  color: black !important;
+  margin-right: 1rem;
+  color: black;
+  transition: color 0.3s;
 }
 
 a:hover {
-  text-decoration: underline;
+  color: lightsalmon;
+}
+
+.profil, .register {
+  background-color: lightsalmon;
+  padding: 10px;
+  border-radius: 7px;
+}
+
+.profil:hover, .register:hover {
+  color: black;
 }

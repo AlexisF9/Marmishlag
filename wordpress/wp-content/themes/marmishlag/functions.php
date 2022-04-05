@@ -18,6 +18,9 @@ function marmishlag_theme_style() {
 	wp_enqueue_style( 'marmishlag-style-header', get_stylesheet_directory_uri() . '/styles/header.css' );
 	wp_enqueue_style( 'marmishlag-style-single', get_stylesheet_directory_uri() . '/styles/single.css' );
 	wp_enqueue_style( 'marmishlag-style-register', get_stylesheet_directory_uri() . '/styles/register.css' );
+	wp_enqueue_style( 'marmishlag-style-profil', get_stylesheet_directory_uri() . '/styles/profil.css' );
+	wp_enqueue_style( 'marmishlag-style-login', get_stylesheet_directory_uri() . '/styles/login.css' );
+
 }
 
 add_action( 'wp_enqueue_scripts', 'marmishlag_theme_style' );

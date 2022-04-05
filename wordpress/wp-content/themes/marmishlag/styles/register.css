@@ -1,29 +1,39 @@
 .register_container {
-  background-color: lightsalmon;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-}
-.register_container h1 {
-  margin-bottom: 40px;
+  background-color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 2rem;
+  border-radius: 10px;
 }
 
 .register_container form {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
-.register_container form :nth-child(2) {
-  margin: 15px 0;
+
+.register_container form input {
+  background-color: #efefef;
+  border: 2px solid transparent;
+  transition: border 0.3s;
+  padding: 10px;
+  border-radius: 7px;
 }
+
+.register_container form input:focus {
+  border: 2px solid black;
+  transition: border 0.3s;
+}
+
+.register_container form label {
+  margin-top: 10px;
+}
+
 .register_container form button {
-  margin-top: 40px;
-  background: white;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 3px;
-  width: 100%;
+  margin-top: 1rem;
+  padding: 10px;
+  border-radius: 7px;
+  cursor: pointer;
 }
+
