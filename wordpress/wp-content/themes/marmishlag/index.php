@@ -4,12 +4,19 @@
 
     <?php if (is_user_logged_in()) : ?>
         <?php $currentUser = wp_get_current_user(); ?>
-        <h2><?= $currentUser->user_login ?></h2>
+        <h2>Bienvenue <?= $currentUser->user_login ?> !</h2>
         </br>
     <?php endif; ?>
 
+	<?php
+        $query = new WP_Query([
+            'post_type' => 'recette'
+        ])
+	?>
+
     <div class="category">
         <?php get_search_form(); ?>
+
         <h3>Catégories</h3>
         <?php
         $terms = get_terms(['taxonomy' => 'type']);
@@ -22,10 +29,12 @@
         ?>
     </div>
 
-    <?php if (have_posts()) : ?>
+
+
+    <?php if ($query->have_posts()) : ?>
         <div class="listPosts">
-            <?php while (have_posts()) : ?>
-                <?php the_post(); ?>
+            <?php while ($query->have_posts()) : ?>
+                <?php $query->the_post(); ?>
                 <div class="card">
                     <img src="<?php the_post_thumbnail_url(); ?>" class="card-img-top" alt="...">
                     <div class="card-body">
