@@ -1,19 +1,25 @@
 .header {
-    background-color: lightsalmon;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 100%;
-    height: 100px;
-    margin-bottom: 3rem;
+  background-color: lightsalmon;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 100px;
+  margin-bottom: 3rem;
 }
 
-.title, .item {
-    display: flex;
-    align-items: center;
+.title,
+.item {
+  display: flex;
+  align-items: center;
 }
 
-.headerLink, .title a {
-    padding-right: 1rem;
-    color: black !important;
+.headerLink,
+.title a {
+  padding-right: 1rem;
+  color: black !important;
+}
+
+a:hover {
+  text-decoration: underline;
 }
