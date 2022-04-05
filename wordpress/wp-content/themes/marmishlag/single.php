@@ -24,13 +24,16 @@
                             <h4>Déscription :</h4>
                             <p class="card-text"><?php the_excerpt(); ?></p>
                         </div>
-
-
-
                     </div>
                 </div>
 
-		<?php comments_template(); ?>
+		<?php
+            if (is_user_logged_in()) {
+                comment_form([
+                    'class_container' => 'francis huster est trop fort'
+                ]);
+            }
+         ?>
 
         <?php endwhile; ?>
 <?php endif; ?>

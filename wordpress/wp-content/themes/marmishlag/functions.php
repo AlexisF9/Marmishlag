@@ -98,6 +98,14 @@ add_action( 'init', function () {
 	flush_rewrite_rules();
 } );
 
+function tg_include_custom_post_types_in_search_results( $query ) {
+	if ( !$query->is_main_query() && !is_admin() && isset($_GET['s'])) {
+		$query->set('s' , $_GET['s']);
+	}
+	return $query;
+}
+add_action( 'pre_get_posts', 'tg_include_custom_post_types_in_search_results' );
+
 add_action( 'admin_post_nopriv_register', function () {
 	if ( ! wp_verify_nonce( $_POST['form'], 'form' ) ) {
 		die( 'nonce invalide' );
@@ -141,14 +149,3 @@ add_action( 'admin_post_upload_recette', function () {
 
 
 
-//	function () {
-//		if ( current_user_can( capability: 'manage_events' )
-//		     && wp_verify_nonce( $_POST['upload_img_nonce'], action: 'upload_img' ) ) {
-//			$post_args     = array( ... );
-//			$postId        = wp_insert_post( $post_args );
-//			$attachment_id = media_handle_upload( file_id: 'recette_img', $postId );
-//			$postId
-//        set_post_thumbnail( $postId, $attachment_id );
-//        wp_redirect( home_url( '?p=' $postId ) );
-//    }
-//	}
