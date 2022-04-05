@@ -14,8 +14,9 @@ add_action( 'after_setup_theme',
 	} );
 
 function marmishlag_theme_style() {
-	wp_enqueue_style( 'marmishlag-style', get_stylesheet_directory_uri() . '/style.css' );
-	wp_enqueue_style( 'marmishlag-style-header', get_stylesheet_directory_uri() . '/header.css' );
+	wp_enqueue_style( 'marmishlag-style', get_stylesheet_directory_uri() . '/styles/style.css' );
+	wp_enqueue_style( 'marmishlag-style-header', get_stylesheet_directory_uri() . '/styles/header.css' );
+	wp_enqueue_style( 'marmishlag-style-single', get_stylesheet_directory_uri() . '/styles/single.css' );
 }
 
 add_action( 'wp_enqueue_scripts', 'marmishlag_theme_style' );
@@ -37,8 +38,12 @@ add_filter( 'nav_menu_link_attributes', function ( $atts ) {
 	return $atts;
 } );
 
-function MarmishlagPaginateLinks() {
-	$paginateLink = paginate_links( [ 'type' => 'array' ] );
+function MarmishlagPaginateLinks( $query ) {
+	$paginateLink = paginate_links( [
+			'type'  => 'array',
+			'total' => $query->max_num_pages
+		]
+	);
 	if ( $paginateLink ) {
 		ob_start();
 		echo '<nav aria-label="Page navigation example" class="pagination">';
@@ -59,7 +64,7 @@ function MarmishlagPaginateLinks() {
 
 add_action( 'init', function () {
 
-	register_taxonomy( 'type', [ 'post' ], [
+	register_taxonomy( 'type', [ 'recette' ], [
 		'labels'       => [
 			'name' => 'Types'
 		],
@@ -74,7 +79,7 @@ add_action( 'init', function () {
 
 	register_post_type( 'recette', [
 		'label'         => 'Recettes',
-		"has_archive" => true,
+		"has_archive"   => true,
 		'public'        => true,
 		'hierarchical'  => true,
 		'show_in_rest'  => false,
@@ -88,16 +93,6 @@ add_action( 'init', function () {
 			'editor'
 		],
 		"capility_type" => "post"
-//		'capabilities' => [
-//			'publish_posts'         => 'publish_posts',
-//			'publish_pages'         => 'publish_pages',
-//			'edit_post'             => 'edit_post',
-//			'read_post'             => 'read_post',
-//			'delete_post'           => 'delete_post',
-//			'edit_posts'            => 'edit_posts',
-//			'edit_others_posts'     => 'edit_others_posts',
-//			'read_private_posts'    => 'read_private_posts',
-//		]
 	] );
 
 	flush_rewrite_rules();
@@ -114,6 +109,46 @@ add_action( 'admin_post_nopriv_register', function () {
 		'user_email' => $_POST['email']
 	] );
 
-
 	wp_redirect( '/login' );
 } );
+
+add_action( 'admin_post_upload_recette', function () {
+	$post_args = array (
+		'post_title'   => $_POST['post_title'],
+		'post_content' => $_POST['post_description'],
+		'post_author'  => get_current_user_id(),
+		'tax_input'    => [
+			'type' => [ $_POST['post_type'] ]
+		],
+		'post_type'    => 'recette',
+		'post_status'  => 'publish'
+	);
+
+	$postId = wp_insert_post( $post_args );
+
+	if ($postId) {
+		$media = media_handle_upload('post_img', $postId);
+		if (!is_wp_error($media)) {
+			set_post_thumbnail($postId, $media);
+		}
+	}
+
+	wp_redirect( home_url() );
+});
+
+
+
+
+
+
+//	function () {
+//		if ( current_user_can( capability: 'manage_events' )
+//		     && wp_verify_nonce( $_POST['upload_img_nonce'], action: 'upload_img' ) ) {
+//			$post_args     = array( ... );
+//			$postId        = wp_insert_post( $post_args );
+//			$attachment_id = media_handle_upload( file_id: 'recette_img', $postId );
+//			$postId
+//        set_post_thumbnail( $postId, $attachment_id );
+//        wp_redirect( home_url( '?p=' $postId ) );
+//    }
+//	}
