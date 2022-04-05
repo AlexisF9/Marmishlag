@@ -1,0 +1,29 @@
+.register_container {
+  background-color: lightsalmon;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+.register_container h1 {
+  margin-bottom: 40px;
+}
+
+.register_container form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.register_container form :nth-child(2) {
+  margin: 15px 0;
+}
+.register_container form button {
+  margin-top: 40px;
+  background: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 3px;
+  width: 100%;
+}

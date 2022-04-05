@@ -17,6 +17,7 @@ function marmishlag_theme_style() {
 	wp_enqueue_style( 'marmishlag-style', get_stylesheet_directory_uri() . '/styles/style.css' );
 	wp_enqueue_style( 'marmishlag-style-header', get_stylesheet_directory_uri() . '/styles/header.css' );
 	wp_enqueue_style( 'marmishlag-style-single', get_stylesheet_directory_uri() . '/styles/single.css' );
+	wp_enqueue_style( 'marmishlag-style-register', get_stylesheet_directory_uri() . '/styles/register.css' );
 }
 
 add_action( 'wp_enqueue_scripts', 'marmishlag_theme_style' );
