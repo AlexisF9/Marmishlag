@@ -75,10 +75,6 @@ add_action( 'init', function () {
 		'public'       => true,
 		'hierarchical' => true,
 		'show_in_rest' => false,
-		'default_term' => [
-			'name' => 'Dessert',
-			'slug' => 'dessert'
-		]
 	] );
 
 	register_post_type( 'recette', [
@@ -109,6 +105,14 @@ function tg_include_custom_post_types_in_search_results( $query ) {
 	return $query;
 }
 add_action( 'pre_get_posts', 'tg_include_custom_post_types_in_search_results' );
+
+function add_theme_caps() {
+	$role = get_role( 'subscriber' );
+	$role->add_cap( 'delete_posts' );
+	$role->add_cap( 'delete_published_posts' );
+}
+
+add_action( 'admin_init', 'add_theme_caps');
 
 add_action( 'admin_post_nopriv_register', function () {
 	if ( ! wp_verify_nonce( $_POST['form'], 'form' ) ) {
