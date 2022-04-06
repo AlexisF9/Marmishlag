@@ -130,14 +130,14 @@ add_action( 'admin_post_nopriv_register', function () {
 
 add_action( 'admin_post_upload_recette', function () {
 	$post_args = array (
+		'post_type'    => 'recette',
+		'post_status'  => 'publish',
 		'post_title'   => $_POST['post_title'],
 		'post_content' => $_POST['post_description'],
 		'post_author'  => get_current_user_id(),
 		'tax_input'    => [
 			'type' => [ $_POST['post_type'] ]
-		],
-		'post_type'    => 'recette',
-		'post_status'  => 'publish'
+		]
 	);
 
 	$postId = wp_insert_post( $post_args );
