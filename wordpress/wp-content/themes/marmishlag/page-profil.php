@@ -43,7 +43,7 @@ if ( is_user_logged_in() ) {
 					    ]);
 					    foreach ($terms as $term) {
 						    ?>
-                            <option value="<?= $term->id ?>"><?= $term->name ?></option>
+                            <option value="<?= $term->slug ?>"><?= $term->name ?></option>
 						    <?php
 					    }
 					    ?>

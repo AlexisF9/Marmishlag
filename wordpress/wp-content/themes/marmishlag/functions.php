@@ -143,6 +143,7 @@ add_action( 'admin_post_upload_recette', function () {
 	$postId = wp_insert_post( $post_args );
 
 	if ($postId) {
+		wp_set_object_terms($postId, $_POST['post_type'],'type');
 		$media = media_handle_upload('post_img', $postId);
 		if (!is_wp_error($media)) {
 			set_post_thumbnail($postId, $media);
