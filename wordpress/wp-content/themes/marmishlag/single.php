@@ -29,9 +29,7 @@
 
 		<?php
             if (is_user_logged_in()) {
-                comment_form([
-                    'class_container' => 'francis huster est trop fort'
-                ]);
+                comments_template();
             }
          ?>
 
