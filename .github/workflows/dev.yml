@@ -2,7 +2,7 @@ name: Dev - Testing
 on: 
   push: 
     branches: 
-      - 'dev'
+      - 'main'
 jobs:
   test:
     name: Test master branch - GitHub Packages
