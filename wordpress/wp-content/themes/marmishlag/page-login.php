@@ -7,7 +7,8 @@ wp_head();
 ?>
 
 <div class="loginContent">
-    <h1>Login</h1>
+    <a href="/">Retour</a>
+    <h1>Se connecter</h1>
 
 	<?php wp_login_form(['form_id' => 'marmishlag_login_form']); ?>
 </div>
