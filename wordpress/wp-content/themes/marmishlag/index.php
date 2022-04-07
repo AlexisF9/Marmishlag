@@ -40,7 +40,6 @@ $query = new WP_Query([
                         <h5 class="card-title"><?php the_title(); ?></h5>
                         <p class="dateRecette">Publié le <?= get_the_date(); ?></p>
                         <p class="card-type"><?php the_terms(get_the_ID(), 'type'); ?></p>
-                        <?php //<p class="card-text">the_excerpt(); </p>?>
                     </div>
                 </div>
             <?php endwhile; ?>
