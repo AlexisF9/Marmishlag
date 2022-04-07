@@ -1,21 +1,15 @@
 <?php get_header(); ?>
 
-<?php if (have_posts()) : ?>
-        <?php while (have_posts()) : ?>
-            <?php the_post(); ?>
+	<?php if (have_posts()) : ?>
+		<?php while (have_posts()) : ?>
+			<?php the_post(); ?>
+            <div class="single-img" style="background-image: url('<?php the_post_thumbnail_url(); ?>')">
+                <div class="filter"></div>
+                <h2 class="card-title"><?php the_title(); ?></h2>
+            </div>
+            <div class="singleContent">
                 <div class="single">
-                    <div class="single-img" style="background-image: url('<?php the_post_thumbnail_url(); ?>')">
-                        <div class="filter"></div>
-                        <h2 class="card-title"><?php the_title(); ?></h2>
-                    </div>
-
                     <div class="single-infos">
-		                <?php if (get_post_meta(get_the_ID(), 'wphetic_sponso', true)) : ?>
-                            <div class="alert" role="alert">
-                                Contenu Sponsorisé
-                            </div>
-		                <?php endif; ?>
-
                         <div class="single-category">
                             <h4>Catégories :</h4>
                             <p><?php the_terms(get_the_ID(), 'type'); ?></p>
@@ -27,15 +21,14 @@
                     </div>
                 </div>
 
-		<?php
-            if (is_user_logged_in()) {
-                comment_form([
-                    'class_container' => 'francis huster est trop fort'
-                ]);
-            }
-         ?>
+                <?php
+                if (is_user_logged_in()) {
+                    comments_template();
+                }
+                ?>
+            </div>
+		<?php endwhile; ?>
+	<?php endif; ?>
 
-        <?php endwhile; ?>
-<?php endif; ?>
 
-<?php wp_footer(); ?>
+<?php get_footer(); ?>

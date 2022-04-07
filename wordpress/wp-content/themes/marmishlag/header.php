@@ -22,7 +22,7 @@
 	    <?php if (is_user_logged_in()) : ?>
 		    <?php $currentUser = wp_get_current_user(); ?>
             <a class="headerLink profil" href="/profil">Profil</a>
-            <a class="headerLink" href="<?= wp_logout_url(home_url()); ?>">Logout</a>
+            <a class="headerLink" href="<?= wp_logout_url(home_url()); ?>">Se déconnecter</a>
 	    <?php endif; ?>
 	    <?php if (!is_user_logged_in()) : ?>
             <a class="headerLink" href="/login">Se connecter</a>

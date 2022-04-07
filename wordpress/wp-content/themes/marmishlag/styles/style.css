@@ -51,6 +51,11 @@ button {
   outline: none;
 }
 
+.imgHeader {
+  width: 100%;
+  height: 100vh;
+}
+
 .welcome {
   margin-bottom: 2rem;
 }
@@ -114,6 +119,11 @@ button {
   margin-bottom: 5px;
   margin-top: 5px;
 }
+
+.dateRecette {
+  font-size: 12px;
+}
+
 .card-text {
   font-size: 12px;
 }
@@ -152,7 +162,7 @@ button {
 }
 
 .card:hover {
-  box-shadow: 0 0 10px #807f7f;
+  box-shadow: 0 0 10px #9a9a9a;
 }
 
 .card-body {
@@ -180,8 +190,9 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 80px;
+  height: 150px;
   width: 100%;
-  background-color: lightsalmon;
+  background-color: white;
   margin-top: 3rem;
+  box-shadow: 0 0 15px #9a9a9a;
 }

@@ -60,14 +60,25 @@ if ( is_user_logged_in() ) {
             </div>
 	    <?php endif; ?>
 
-        <h3>Vous avez <?= $total; ?> recettes :</h3>
-        <ul>
+        <h3 class="nbrRecette">Vous avez <?= $total; ?> recettes :</h3>
+
+        <div class="listPosts">
 		    <?php while ($query->have_posts()) : ?>
 			    <?php $query->the_post(); ?>
-                <li><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></li>
-                <li><a href="<?= get_delete_post_link(get_the_ID()) ?>">Supprimer</a></li>
+                <div class="card">
+                    <a href="<?php the_permalink(); ?>">
+                        <div style='background-image: url("<?php the_post_thumbnail_url(); ?>")' class="card-img-top" alt="..." ></div>
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title"><?php the_title(); ?></h5>
+                        <p class="card-type"><small><?php the_terms(get_the_ID(), 'type'); ?></small></p>
+					    <?php //<p class="card-text">the_excerpt(); </p>?>
+                        <a class="deleteBtn" href="<?= get_delete_post_link(get_the_ID()) ?>">Supprimer</a>
+                    </div>
+                </div>
 		    <?php endwhile; ?>
-        </ul>
+        </div>
+
     </div>
 
 
@@ -78,7 +89,7 @@ if ( is_user_logged_in() ) {
 	wp_redirect( home_url() );
 }
 
-wp_footer();
+get_footer();
 ?>
 
 
