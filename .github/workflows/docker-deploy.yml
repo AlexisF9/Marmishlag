@@ -14,12 +14,6 @@ jobs:
     - name: 🚚 Get latest code
       uses: actions/checkout@v2
       
-    - name: Install Docker
-      run: apt-get install docker-ce docker-ce-cli containerd.io
-           
-    - name: Stop Docker
-      run: docker-compose down
-      
     - name: Deploy to Server
       uses: easingthemes/ssh-deploy@main
       env:
@@ -30,6 +24,4 @@ jobs:
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
           TARGET: "Marmishlag/"
           EXCLUDE: "marmishlag.sql"
-          
-    - name: Start Docker
-      run: docker-compose up -d
+
