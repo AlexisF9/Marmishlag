@@ -13,7 +13,8 @@ jobs:
     steps:
     - name: 🚚 Get latest code
       uses: actions/checkout@v2
-      
+    - name: Install Rsync
+      run: apt-get install rsync
     - name: Deploy to Server
       uses: easingthemes/ssh-deploy@main
       env:
